@@ -1,0 +1,18 @@
+image:
+  repository: mcp-agent
+  tag: latest
+  pullPolicy: IfNotPresent
+
+
+resources:
+  requests:
+    cpu: "500m"
+    memory: "1Gi"
+  limits:
+    cpu: "2"
+    memory: "4Gi"
+
+service:
+  port: 8080
+
+ollamaModel: "deepseek-coder:latest"

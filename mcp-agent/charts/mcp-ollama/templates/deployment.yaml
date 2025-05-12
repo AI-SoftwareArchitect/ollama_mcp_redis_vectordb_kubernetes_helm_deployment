@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-agent
+  template:
+    metadata:
+      labels:
+        app: mcp-agent
+    spec:
+      containers:
+        - name: mcp-agent
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          command: ["/bin/sh", "-c"]
+          args:
+            - >
+              ollama serve & 
+              sleep 5 && 
+              ollama pull {{ .Values.ollamaModel }} && 
+              uvicorn main:app --host 0.0.0.0 --port 8080

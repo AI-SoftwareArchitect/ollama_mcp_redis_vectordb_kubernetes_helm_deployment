@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MCP Komut Ver</title>
+</head>
+<body>
+  <h1>Komut Yaz</h1>
+  <input type="text" id="input" />
+  <button onclick="sendCommand()">Gönder</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function sendCommand() {
+      const input = document.getElementById("input").value;
+      const res = await fetch("/command", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ input })
+      });
+      const data = await res.json();
+      document.getElementById("result").textContent = data.generated_code;
+    }
+  </script>
+</body>
+</html>
