@@ -31,4 +31,4 @@ This project is designed to create a **Multi-Agent Control System (MCP)** using 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/mcp-ollama.git
+git clone [https://github.com/your-username/mcp-ollama.git](https://github.com/AI-SoftwareArchitect/ollama_mcp_redis_vectordb_kubernetes_helm_deployment.git)
